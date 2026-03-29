@@ -7,6 +7,7 @@
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl2.h>
 
+#include <cmath>
 #include <exception>
 #include <iomanip>
 #include <iostream>
@@ -17,6 +18,69 @@ namespace
 constexpr int kInitialWindowWidth = 1280;
 constexpr int kInitialWindowHeight = 720;
 constexpr const char* kWindowTitle = "Fractal Lab";
+constexpr float kMouseLookSensitivity = 0.0022f;
+constexpr float kFastMoveMultiplier = 4.0f;
+constexpr float kPitchLimitRadians = 1.5533f;
+
+FractalLab::Vec3 Add(const FractalLab::Vec3 a, const FractalLab::Vec3 b)
+{
+    return { a.x + b.x, a.y + b.y, a.z + b.z };
+}
+
+FractalLab::Vec3 Sub(const FractalLab::Vec3 a, const FractalLab::Vec3 b)
+{
+    return { a.x - b.x, a.y - b.y, a.z - b.z };
+}
+
+FractalLab::Vec3 Mul(const FractalLab::Vec3 value, const float scalar)
+{
+    return { value.x * scalar, value.y * scalar, value.z * scalar };
+}
+
+float Dot(const FractalLab::Vec3 a, const FractalLab::Vec3 b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+FractalLab::Vec3 Cross(const FractalLab::Vec3 a, const FractalLab::Vec3 b)
+{
+    return {
+        a.y * b.z - a.z * b.y,
+        a.z * b.x - a.x * b.z,
+        a.x * b.y - a.y * b.x
+    };
+}
+
+float Length(const FractalLab::Vec3 value)
+{
+    return std::sqrt(Dot(value, value));
+}
+
+FractalLab::Vec3 Normalize(const FractalLab::Vec3 value)
+{
+    const float length = Length(value);
+    if (length <= 1.0e-5f)
+    {
+        return { 0.0f, 0.0f, 0.0f };
+    }
+
+    return Mul(value, 1.0f / length);
+}
+
+FractalLab::Vec3 ForwardFromAngles(const float yawRadians, const float pitchRadians)
+{
+    const float cosPitch = std::cos(pitchRadians);
+    return Normalize({
+        std::sin(yawRadians) * cosPitch,
+        std::sin(pitchRadians),
+        std::cos(yawRadians) * cosPitch
+    });
+}
+
+float ClampFloat(const float value, const float minValue, const float maxValue)
+{
+    return value < minValue ? minValue : (value > maxValue ? maxValue : value);
+}
 }
 
 namespace FractalLab
@@ -44,6 +108,102 @@ bool App::InitializeWindow()
     glfwMakeContextCurrent(window_);
     glfwSwapInterval(1);
     return true;
+}
+
+void App::SetMouseCapture(const bool enabled)
+{
+    if (window_ == nullptr || mouseCaptureEnabled_ == enabled)
+    {
+        return;
+    }
+
+    mouseCaptureEnabled_ = enabled;
+    hasMouseReference_ = false;
+    glfwSetInputMode(window_, GLFW_CURSOR, enabled ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+}
+
+void App::HandleCameraInput(Engine& engine, const double deltaTimeSeconds)
+{
+    EngineState& state = engine.GetState();
+    CameraState& camera = state.scene.camera;
+    ImGuiIO& io = ImGui::GetIO();
+
+    const bool wantsMouseLook =
+        glfwGetMouseButton(window_, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS && !io.WantCaptureMouse;
+    SetMouseCapture(wantsMouseLook);
+
+    if (mouseCaptureEnabled_)
+    {
+        double mouseX = 0.0;
+        double mouseY = 0.0;
+        glfwGetCursorPos(window_, &mouseX, &mouseY);
+
+        if (hasMouseReference_)
+        {
+            const float deltaX = static_cast<float>(mouseX - lastMouseX_);
+            const float deltaY = static_cast<float>(mouseY - lastMouseY_);
+
+            camera.yawRadians += deltaX * kMouseLookSensitivity;
+            camera.pitchRadians -= deltaY * kMouseLookSensitivity;
+            camera.pitchRadians = ClampFloat(camera.pitchRadians, -kPitchLimitRadians, kPitchLimitRadians);
+            camera.forward = ForwardFromAngles(camera.yawRadians, camera.pitchRadians);
+        }
+
+        lastMouseX_ = mouseX;
+        lastMouseY_ = mouseY;
+        hasMouseReference_ = true;
+    }
+
+    if (io.WantCaptureKeyboard && !mouseCaptureEnabled_)
+    {
+        return;
+    }
+
+    const Vec3 worldUp = std::fabs(camera.forward.y) > 0.98f ? Vec3{ 0.0f, 0.0f, 1.0f } : Vec3{ 0.0f, 1.0f, 0.0f };
+    Vec3 right = Normalize(Cross(worldUp, camera.forward));
+    if (Length(right) <= 1.0e-5f)
+    {
+        right = { 1.0f, 0.0f, 0.0f };
+    }
+
+    const Vec3 up = Normalize(Cross(camera.forward, right));
+
+    Vec3 movement = {};
+    if (glfwGetKey(window_, GLFW_KEY_W) == GLFW_PRESS)
+    {
+        movement = Add(movement, camera.forward);
+    }
+    if (glfwGetKey(window_, GLFW_KEY_S) == GLFW_PRESS)
+    {
+        movement = Sub(movement, camera.forward);
+    }
+    if (glfwGetKey(window_, GLFW_KEY_D) == GLFW_PRESS)
+    {
+        movement = Add(movement, right);
+    }
+    if (glfwGetKey(window_, GLFW_KEY_A) == GLFW_PRESS)
+    {
+        movement = Sub(movement, right);
+    }
+    if (glfwGetKey(window_, GLFW_KEY_E) == GLFW_PRESS)
+    {
+        movement = Add(movement, up);
+    }
+    if (glfwGetKey(window_, GLFW_KEY_Q) == GLFW_PRESS)
+    {
+        movement = Sub(movement, up);
+    }
+
+    if (Length(movement) > 1.0e-5f)
+    {
+        float moveSpeed = camera.movementSpeed;
+        if (glfwGetKey(window_, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS || glfwGetKey(window_, GLFW_KEY_RIGHT_SHIFT) == GLFW_PRESS)
+        {
+            moveSpeed *= kFastMoveMultiplier;
+        }
+
+        camera.position = Add(camera.position, Mul(Normalize(movement), moveSpeed * static_cast<float>(deltaTimeSeconds)));
+    }
 }
 
 bool App::InitializeImGui()
@@ -138,10 +298,16 @@ void App::DrawUi(Engine& engine, const double deltaTimeSeconds) const
     ImGui::Text("Delta: %.2f ms", deltaTimeSeconds * 1000.0);
     ImGui::Text("Render resolution: %d x %d", renderer.GetWidth(), renderer.GetHeight());
     ImGui::Text("Center pixel: 0x%08X", renderer.GetCenterPixel());
+    ImGui::Text(
+        "Camera position: %.2f %.2f %.2f",
+        state.scene.camera.position.x,
+        state.scene.camera.position.y,
+        state.scene.camera.position.z);
 
     ImGui::Separator();
     ImGui::Checkbox("Animate scene", &state.animateScene);
     ImGui::SliderFloat("Resolution scale", &state.renderSettings.resolutionScale, 0.35f, 1.0f, "%.2f");
+    ImGui::SliderFloat("Move speed", &state.scene.camera.movementSpeed, 0.5f, 20.0f, "%.2f");
     ImGui::SliderFloat("Fractal power", &state.scene.fractalPower, 2.0f, 16.0f);
     ImGui::SliderFloat("Glow intensity", &state.scene.glowIntensity, 0.0f, 1.5f);
     ImGui::SliderFloat("Fog density", &state.scene.fogDensity, 0.0f, 0.08f);
@@ -150,6 +316,7 @@ void App::DrawUi(Engine& engine, const double deltaTimeSeconds) const
 
     ImGui::Separator();
     ImGui::Checkbox("Show ImGui demo", &showImGuiDemo_);
+    ImGui::TextWrapped("Controls: hold RMB to look around, use WASD to move, Q/E for vertical movement, Shift to boost speed.");
     ImGui::TextWrapped("Current display path uses CUDA/OpenGL interop, so the frame stays on the GPU all the way to presentation.");
     ImGui::End();
 
@@ -201,6 +368,7 @@ int App::Run()
             previousFrameTime = currentFrameTime;
 
             engine.Resize(framebufferWidth, framebufferHeight);
+            HandleCameraInput(engine, deltaTimeSeconds);
             if (!engine.Tick(deltaTimeSeconds))
             {
                 std::cerr << "Fractal Lab frame failed: " << engine.GetLastError() << '\n';
@@ -231,12 +399,14 @@ int App::Run()
         }
 
         engine.Shutdown();
+        SetMouseCapture(false);
         Shutdown();
         return 0;
     }
     catch (const std::exception& exception)
     {
         std::cerr << "Unhandled exception: " << exception.what() << '\n';
+        SetMouseCapture(false);
         Shutdown();
         return 1;
     }

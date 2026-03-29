@@ -7,8 +7,10 @@ namespace FractalLab
 bool Engine::Initialize()
 {
     state_.isRunning = true;
-    state_.scene.activeFractal = FractalType::PlaceholderField;
+    state_.scene.activeFractal = FractalType::Mandelbulb;
     state_.scene.camera.position = { 0.0f, 0.0f, -4.0f };
+    state_.scene.camera.yawRadians = 0.0f;
+    state_.scene.camera.pitchRadians = 0.0f;
     state_.scene.camera.forward = { 0.0f, 0.0f, 1.0f };
 
     if (!renderer_.Initialize(state_.renderSettings))
@@ -102,10 +104,6 @@ void Engine::UpdateScene()
     }
 
     const float time = static_cast<float>(state_.time.elapsedSeconds);
-
-    state_.scene.camera.position.x = std::sin(time * 0.35f) * 0.6f;
-    state_.scene.camera.position.y = std::cos(time * 0.22f) * 0.35f;
-    state_.scene.camera.position.z = -4.0f + std::sin(time * 0.18f) * 0.4f;
 
     state_.scene.ambientPulse = 0.5f + 0.5f * std::sin(time * 1.3f);
     state_.scene.glowIntensity = 0.45f + 0.35f * (0.5f + 0.5f * std::sin(time * 0.6f));
