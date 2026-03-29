@@ -2,14 +2,17 @@
 
 #include "engine/FrameState.h"
 
+#include <cuda_runtime.h>
+
 #include <cstdint>
 #include <string>
-#include <vector>
 
 namespace FractalLab
 {
 bool RenderFrameCuda(
     const FrameState& frameState,
-    std::vector<std::uint32_t>& outputPixels,
+    cudaSurfaceObject_t outputSurface,
+    std::uint32_t* deviceCenterPixel,
+    std::uint32_t& centerPixel,
     std::string& errorMessage);
 }

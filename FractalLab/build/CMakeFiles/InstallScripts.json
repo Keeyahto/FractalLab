@@ -1,7 +1,9 @@
 {
 	"InstallScripts" : 
 	[
-		"D:/Users/Admin/source/repos/FractalLab/FractalLab/build/cmake_install.cmake"
+		"D:/Users/Admin/source/repos/FractalLab/FractalLab/build/cmake_install.cmake",
+		"D:/Users/Admin/source/repos/FractalLab/FractalLab/build/third_party/glfw/cmake_install.cmake",
+		"D:/Users/Admin/source/repos/FractalLab/FractalLab/build/third_party/glfw/src/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

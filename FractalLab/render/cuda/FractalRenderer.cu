@@ -82,7 +82,10 @@ __device__ std::uint32_t PackRgba8(const float red, const float green, const flo
     return 0xFF000000u | (b << 16U) | (g << 8U) | r;
 }
 
-__global__ void RenderKernel(std::uint32_t* output, const FrameState frameState)
+__global__ void RenderKernel(
+    cudaSurfaceObject_t outputSurface,
+    std::uint32_t* centerPixel,
+    const FrameState frameState)
 {
     const int x = static_cast<int>(blockIdx.x * blockDim.x + threadIdx.x);
     const int y = static_cast<int>(blockIdx.y * blockDim.y + threadIdx.y);
@@ -133,9 +136,19 @@ __global__ void RenderKernel(std::uint32_t* output, const FrameState frameState)
     const float red = baseR * vignette * fog;
     const float green = baseG * vignette * fog;
     const float blue = baseB * vignette * (0.85f + 0.15f * fog);
+    const std::uint32_t packed = PackRgba8(red, green, blue);
 
-    output[static_cast<std::size_t>(y) * static_cast<std::size_t>(width) + static_cast<std::size_t>(x)] =
-        PackRgba8(red, green, blue);
+    const uchar4 rgba = make_uchar4(
+        static_cast<unsigned char>(packed & 0xFFU),
+        static_cast<unsigned char>((packed >> 8U) & 0xFFU),
+        static_cast<unsigned char>((packed >> 16U) & 0xFFU),
+        255U);
+    surf2Dwrite(rgba, outputSurface, x * static_cast<int>(sizeof(uchar4)), y);
+
+    if (x == width / 2 && y == height / 2)
+    {
+        *centerPixel = packed;
+    }
 }
 
 bool CheckCudaStatus(const cudaError_t status, std::string& errorMessage, const char* step)
@@ -154,31 +167,12 @@ bool CheckCudaStatus(const cudaError_t status, std::string& errorMessage, const 
 
 bool RenderFrameCuda(
     const FrameState& frameState,
-    std::vector<std::uint32_t>& outputPixels,
+    const cudaSurfaceObject_t outputSurface,
+    std::uint32_t* deviceCenterPixel,
+    std::uint32_t& centerPixel,
     std::string& errorMessage)
 {
     errorMessage.clear();
-
-    const std::size_t pixelCount =
-        static_cast<std::size_t>(frameState.renderSettings.width) *
-        static_cast<std::size_t>(frameState.renderSettings.height);
-    if (outputPixels.size() != pixelCount)
-    {
-        outputPixels.resize(pixelCount);
-    }
-
-    std::uint32_t* devicePixels = nullptr;
-    const std::size_t bytes = pixelCount * sizeof(std::uint32_t);
-
-    if (!CheckCudaStatus(cudaSetDevice(0), errorMessage, "cudaSetDevice"))
-    {
-        return false;
-    }
-
-    if (!CheckCudaStatus(cudaMalloc(reinterpret_cast<void**>(&devicePixels), bytes), errorMessage, "cudaMalloc"))
-    {
-        return false;
-    }
 
     const dim3 blockSize(16, 16, 1);
     const dim3 gridSize(
@@ -186,16 +180,15 @@ bool RenderFrameCuda(
         static_cast<unsigned int>((frameState.renderSettings.height + blockSize.y - 1) / blockSize.y),
         1);
 
-    RenderKernel<<<gridSize, blockSize>>>(devicePixels, frameState);
+    RenderKernel<<<gridSize, blockSize>>>(outputSurface, deviceCenterPixel, frameState);
 
     bool success = CheckCudaStatus(cudaGetLastError(), errorMessage, "RenderKernel launch");
     success = success && CheckCudaStatus(cudaDeviceSynchronize(), errorMessage, "cudaDeviceSynchronize");
     success = success && CheckCudaStatus(
-        cudaMemcpy(outputPixels.data(), devicePixels, bytes, cudaMemcpyDeviceToHost),
+        cudaMemcpy(&centerPixel, deviceCenterPixel, sizeof(centerPixel), cudaMemcpyDeviceToHost),
         errorMessage,
-        "cudaMemcpy");
+        "cudaMemcpy(centerPixel)");
 
-    cudaFree(devicePixels);
     return success;
 }
 }

@@ -3,6 +3,14 @@ cmake_minimum_required(VERSION 3.24)
 project(FractalLab LANGUAGES CXX CUDA)
 
 find_package(CUDAToolkit REQUIRED)
+find_package(OpenGL REQUIRED)
+
+set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(GLFW_INSTALL OFF CACHE BOOL "" FORCE)
+
+add_subdirectory(third_party/glfw EXCLUDE_FROM_ALL)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,10 +48,24 @@ set_target_properties(FractalLab PROPERTIES
     CUDA_RUNTIME_LIBRARY None
 )
 
-target_link_libraries(FractalLab PRIVATE CUDA::cudart)
+add_library(imgui STATIC
+    third_party/imgui/imgui.cpp
+    third_party/imgui/imgui_demo.cpp
+    third_party/imgui/imgui_draw.cpp
+    third_party/imgui/imgui_tables.cpp
+    third_party/imgui/imgui_widgets.cpp
+    third_party/imgui/backends/imgui_impl_glfw.cpp
+    third_party/imgui/backends/imgui_impl_opengl2.cpp
+)
+
+target_include_directories(imgui PUBLIC third_party/imgui third_party/imgui/backends)
+target_link_libraries(imgui PUBLIC glfw OpenGL::GL)
+
+target_link_libraries(FractalLab PRIVATE CUDA::cudart OpenGL::GL glfw imgui)
 
 if(MSVC)
     target_compile_options(FractalLab PRIVATE $<$<COMPILE_LANGUAGE:CXX>:/W4 /EHsc>)
+    target_compile_definitions(FractalLab PRIVATE _CRT_SECURE_NO_WARNINGS NOMINMAX)
 else()
     target_compile_options(
         FractalLab

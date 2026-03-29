@@ -10,6 +10,7 @@ struct EngineState
 {
     bool isRunning = false;
     unsigned int maxFrames = 180;
+    bool animateScene = true;
     TimeState time;
     SceneState scene;
     RenderSettings renderSettings;

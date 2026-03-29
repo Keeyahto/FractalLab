@@ -1,3 +1,7 @@
 D:/Users/Admin/source/repos/FractalLab/FractalLab/build/CMakeFiles/FractalLab.dir
+D:/Users/Admin/source/repos/FractalLab/FractalLab/build/CMakeFiles/imgui.dir
 D:/Users/Admin/source/repos/FractalLab/FractalLab/build/CMakeFiles/ALL_BUILD.dir
 D:/Users/Admin/source/repos/FractalLab/FractalLab/build/CMakeFiles/ZERO_CHECK.dir
+D:/Users/Admin/source/repos/FractalLab/FractalLab/build/third_party/glfw/CMakeFiles/ALL_BUILD.dir
+D:/Users/Admin/source/repos/FractalLab/FractalLab/build/third_party/glfw/src/CMakeFiles/glfw.dir
+D:/Users/Admin/source/repos/FractalLab/FractalLab/build/third_party/glfw/src/CMakeFiles/update_mappings.dir

@@ -87,7 +87,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include" /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include/cccl"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -109,17 +109,17 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
-      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
-      <Defines>%(Defines);_WINDOWS;CMAKE_INTDIR="Debug"</Defines>
+      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="Debug"</Defines>
       <AdditionalOptions>%(AdditionalOptions) -forward-unknown-to-host-compiler -std=c++17 -arch=native -Xcompiler="/EHsc -Zi -Ob0"</AdditionalOptions>
       <CodeGeneration></CodeGeneration>
       <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
@@ -133,7 +133,7 @@
       <UseHostInclude>false</UseHostInclude>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -141,7 +141,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;opengl32.lib;third_party\glfw\src\Debug\glfw3.lib;Debug\imgui.lib;opengl32.lib;third_party\glfw\src\Debug\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64;C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -164,7 +164,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include" /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include/cccl"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -185,19 +185,19 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
-      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
-      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</Defines>
+      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="Release"</Defines>
       <AdditionalOptions>%(AdditionalOptions) -forward-unknown-to-host-compiler -std=c++17 -arch=native -Xcompiler="/EHsc -Ob2"</AdditionalOptions>
       <CodeGeneration></CodeGeneration>
       <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
@@ -210,7 +210,7 @@
       <UseHostInclude>false</UseHostInclude>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -218,7 +218,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;opengl32.lib;third_party\glfw\src\Release\glfw3.lib;Release\imgui.lib;opengl32.lib;third_party\glfw\src\Release\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64;C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -241,7 +241,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include" /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include/cccl"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -262,19 +262,19 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
-      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
-      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</Defines>
+      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="MinSizeRel"</Defines>
       <AdditionalOptions>%(AdditionalOptions) -forward-unknown-to-host-compiler -std=c++17 -arch=native -Xcompiler="/EHsc -Ob1"</AdditionalOptions>
       <CodeGeneration></CodeGeneration>
       <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
@@ -287,7 +287,7 @@
       <UseHostInclude>false</UseHostInclude>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -295,7 +295,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;opengl32.lib;third_party\glfw\src\MinSizeRel\glfw3.lib;MinSizeRel\imgui.lib;opengl32.lib;third_party\glfw\src\MinSizeRel\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64;C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -318,7 +318,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include" /external:I "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/include/cccl"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -340,17 +340,17 @@
       <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
-      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
-      <Defines>%(Defines);_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</Defines>
+      <Include>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(Include)</Include>
+      <Defines>%(Defines);_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;NOMINMAX;CMAKE_INTDIR="RelWithDebInfo"</Defines>
       <AdditionalOptions>%(AdditionalOptions) -forward-unknown-to-host-compiler -std=c++17 -arch=native -Xcompiler="/EHsc -Zi -Ob1"</AdditionalOptions>
       <CodeGeneration></CodeGeneration>
       <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
@@ -363,7 +363,7 @@
       <UseHostInclude>false</UseHostInclude>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Users\Admin\source\repos\FractalLab\FractalLab;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\glfw\include;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui;D:\Users\Admin\source\repos\FractalLab\FractalLab\third_party\imgui\backends;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\include\cccl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -371,7 +371,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v13.2\lib\x64\cudart.lib;opengl32.lib;third_party\glfw\src\RelWithDebInfo\glfw3.lib;RelWithDebInfo\imgui.lib;opengl32.lib;third_party\glfw\src\RelWithDebInfo\glfw3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64;C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v13.2/lib/x64/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -405,7 +405,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindOpenGL.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule D:/Users/Admin/source/repos/FractalLab/FractalLab/CMakeLists.txt</Message>
@@ -418,7 +418,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindOpenGL.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule D:/Users/Admin/source/repos/FractalLab/FractalLab/CMakeLists.txt</Message>
@@ -431,7 +431,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindOpenGL.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule D:/Users/Admin/source/repos/FractalLab/FractalLab/CMakeLists.txt</Message>
@@ -444,7 +444,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCUDAInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Compiler\NVIDIA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindCUDAToolkit.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindOpenGL.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageHandleStandardArgs.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\FindPackageMessage.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCXXLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Internal\CMakeCommonLinkerInformation.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Linker\MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Linker\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-Initialize.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows-NVIDIA-CUDA.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-4.3\Modules\Platform\WindowsPaths.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCUDACompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeCXXCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeRCCompiler.cmake;D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\4.3.1\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">D:\Users\Admin\source\repos\FractalLab\FractalLab\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
@@ -473,6 +473,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\build\third_party\glfw\src\glfw.vcxproj">
+      <Project>{8E27D472-D02B-3464-A0B2-E7A8B7D314B0}</Project>
+      <Name>glfw</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\build\imgui.vcxproj">
+      <Project>{713FB2B9-0461-38C7-AF5A-02D37403DCFF}</Project>
+      <Name>imgui</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

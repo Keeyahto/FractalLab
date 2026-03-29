@@ -11,15 +11,20 @@ class Engine
 {
 public:
     bool Initialize();
-    int Run();
+    void Shutdown();
+    bool Tick(double deltaTimeSeconds);
+    void Resize(int width, int height);
 
     const std::string& GetLastError() const;
+    EngineState& GetState();
+    const EngineState& GetState() const;
+    Renderer& GetRenderer();
+    const Renderer& GetRenderer() const;
 
 private:
     void AdvanceTime();
     void UpdateScene();
     FrameState BuildFrameState() const;
-    void LogFrame(const FrameState& frameState) const;
 
     EngineState state_;
     Renderer renderer_;

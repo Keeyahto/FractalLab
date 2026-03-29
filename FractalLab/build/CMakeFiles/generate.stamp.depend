@@ -14,6 +14,7 @@ D:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/MSVC.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/NVIDIA-CUDA.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/Compiler/NVIDIA.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/FindCUDAToolkit.cmake
+D:/Program Files/CMake/share/cmake-4.3/Modules/FindOpenGL.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/FindPackageHandleStandardArgs.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/FindPackageMessage.cmake
 D:/Program Files/CMake/share/cmake-4.3/Modules/Internal/CMakeCXXLinkerInformation.cmake

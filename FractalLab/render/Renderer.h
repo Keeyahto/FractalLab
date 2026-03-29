@@ -4,7 +4,8 @@
 
 #include <cstdint>
 #include <string>
-#include <vector>
+
+struct cudaGraphicsResource;
 
 namespace FractalLab
 {
@@ -12,18 +13,28 @@ class Renderer
 {
 public:
     bool Initialize(const RenderSettings& settings);
+    void Shutdown();
     bool Render(const FrameState& frameState);
 
     const std::string& GetLastError() const;
     std::uint32_t GetCenterPixel() const;
-    const std::vector<std::uint32_t>& GetPixels() const;
+    unsigned int GetOutputTexture() const;
+    int GetWidth() const;
+    int GetHeight() const;
 
 private:
-    void ResizeIfNeeded(const RenderSettings& settings);
+    bool EnsureResources(const RenderSettings& settings);
+    bool CreateOrResizeOutputTexture(const RenderSettings& settings);
+    void ReleaseInteropResource();
+    void ReleaseTexture();
 
     int width_ = 0;
     int height_ = 0;
-    std::vector<std::uint32_t> pixelBuffer_;
+    unsigned int outputTexture_ = 0;
+    cudaGraphicsResource* cudaTextureResource_ = nullptr;
+    std::uint32_t* deviceCenterPixel_ = nullptr;
+    std::uint32_t centerPixel_ = 0;
+    bool cudaDeviceReady_ = false;
     std::string lastError_;
 };
 }
