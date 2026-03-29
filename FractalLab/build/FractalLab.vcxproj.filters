@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\app\main.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\app\App.cpp">
+      <Filter>app</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\engine\Engine.cpp">
+      <Filter>engine</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\render\Renderer.cpp">
+      <Filter>render</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\app\App.h">
+      <Filter>app</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\engine\Engine.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\engine\EngineState.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\engine\FrameState.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\engine\TimeState.h">
+      <Filter>engine</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\scene\Camera.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\scene\SceneState.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\render\RenderSettings.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\render\Renderer.h">
+      <Filter>render</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\render\cuda\FractalRenderer.h">
+      <Filter>render\cuda</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="..\render\cuda\FractalRenderer.cu">
+      <Filter>render\cuda</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Users\Admin\source\repos\FractalLab\FractalLab\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="app">
+      <UniqueIdentifier>{FA8667A9-333F-3C73-A0B9-5AAF7C097D7F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="engine">
+      <UniqueIdentifier>{161F645F-BDBF-38D4-A61E-C24BD4B2AFA6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render">
+      <UniqueIdentifier>{D9ADD104-0F43-38E1-B8B1-5ECA00203660}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render\cuda">
+      <UniqueIdentifier>{313A79EB-2A80-3987-8AC3-0DB0BD91CB5D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{EF0A869B-9056-3D06-904C-21455426A21B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
